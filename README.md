@@ -50,7 +50,7 @@ mkdir data
   │   ├── Annotations  
   │   ├── ImageSets
   │   ├── JPEGImages
-  │   ├── ...
+  │   └── ...
   └── VOC2012
       ├── Annotations  
       ├── ImageSets
