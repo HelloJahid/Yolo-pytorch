@@ -130,8 +130,6 @@ If you want to test a model with some images, you could put them into the same f
 If you want to test a model with a video, you could run :
 - **python3 test_xxx_video.py --input path/to/input/file --output path/to/output/file**: For example, python3 test_coco_video --input test_videos/input.mp4 --output test_videos/output.mp4
 
-You could find all trained models I have trained in [link](https://drive.google.com/open?id=1gx1qvgu8rZRtEgkCMA9KqJZtFwjr8fc-)
-
 ## Experiments:
 
 I trained models in 2 machines, one with NVIDIA TITAN X 12gb GPU and the other with NVIDIA quadro 6000 24gb GPU.
