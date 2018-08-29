@@ -1,3 +1,6 @@
+"""
+@author: Viet Nguyen <nhviet1009@gmail.com>
+"""
 import math
 import torch
 import torch.nn as nn
@@ -29,8 +32,8 @@ class YoloLoss(nn.modules.loss._Loss):
         # Get x,y,w,h,conf,cls
         output = output.view(batch_size, self.num_anchors, -1, height * width)
         coord = torch.zeros_like(output[:, :, :4, :])
-        coord[:, :, :2, :] = output[:, :, :2, :].sigmoid()  # tx,ty
-        coord[:, :, 2:4, :] = output[:, :, 2:4, :]  # tw,th
+        coord[:, :, :2, :] = output[:, :, :2, :].sigmoid()  
+        coord[:, :, 2:4, :] = output[:, :, 2:4, :]
         conf = output[:, :, 4, :].sigmoid()
         cls = output[:, :, 5:, :].contiguous().view(batch_size * self.num_anchors, self.num_classes,
                                                     height * width).transpose(1, 2).contiguous().view(-1,
@@ -93,20 +96,6 @@ class YoloLoss(nn.modules.loss._Loss):
         tconf = torch.zeros(batch_size, self.num_anchors, height * width, requires_grad=False)
         tcls = torch.zeros(batch_size, self.num_anchors, height * width, requires_grad=False)
 
-        # if self.seen < 12800:
-        #     coord_mask.fill_(1)
-        #     if self.anchor_step == 4:
-        #         tcoord[:, :, 0] = self.anchors[:, 2].contiguous().view(1, self.num_anchors, 1, 1).repeat(batch_size, 1,
-        #                                                                                                  1,
-        #                                                                                                  height * width)
-        #         tcoord[:, :, 1] = self.anchors[:, 3].contiguous().view(1, self.num_anchors, 1, 1).repeat(batch_size, 1,
-        #                                                                                                  1,
-        #                                                                                                  height * width)
-        #     else:
-        #         tcoord[:, :, 0].fill_(0.5)
-        #         tcoord[:, :, 1].fill_(0.5)
-
-
         for b in range(batch_size):
             if len(ground_truth[b]) == 0:
                 continue
@@ -131,13 +120,13 @@ class YoloLoss(nn.modules.loss._Loss):
             mask = (iou_gt_pred > self.thresh).sum(0) >= 1
             conf_mask[b][mask.view_as(conf_mask[b])] = 0
 
-            # Find best anchor for each gt
+            # Find best anchor for each ground truth
             gt_wh = gt.clone()
             gt_wh[:, :2] = 0
             iou_gt_anchors = bbox_ious(gt_wh, anchors)
             _, best_anchors = iou_gt_anchors.max(1)
 
-            # Set masks and target values for each gt
+            # Set masks and target values for each ground truth
             for i, anno in enumerate(ground_truth[b]):
                 gi = min(width - 1, max(0, int(gt[i, 0])))
                 gj = min(height - 1, max(0, int(gt[i, 1])))

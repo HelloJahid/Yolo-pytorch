@@ -1,4 +1,6 @@
-import os
+"""
+@author: Viet Nguyen <nhviet1009@gmail.com>
+"""
 import argparse
 import pickle
 import cv2

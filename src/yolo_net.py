@@ -1,3 +1,6 @@
+"""
+@author: Viet Nguyen <nhviet1009@gmail.com>
+"""
 import torch.nn as nn
 import torch
 

@@ -1,3 +1,6 @@
+"""
+@author: Viet Nguyen <nhviet1009@gmail.com>
+"""
 import numpy as np
 from random import uniform
 import cv2
@@ -21,7 +24,6 @@ class Crop(object):
         self.max_crop = max_crop
 
     def __call__(self, data):
-        # We crop image while still maintaining all bounding boxes
         image, label = data
         height, width = image.shape[:2]
         xmin = width
@@ -107,7 +109,6 @@ class Resize(object):
         self.image_size = image_size
 
     def __call__(self, data):
-        # We crop image while still maintaining all bounding boxes
         image, label = data
         height, width = image.shape[:2]
         image = cv2.resize(image, (self.image_size, self.image_size))

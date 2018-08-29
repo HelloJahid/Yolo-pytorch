@@ -1,8 +1,9 @@
+"""
+@author: Viet Nguyen <nhviet1009@gmail.com>
+"""
 import os
 from torch.utils.data import Dataset
-import cv2
 import xml.etree.ElementTree as ET
-import numpy as np
 from src.data_augmentation import *
 
 
