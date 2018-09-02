@@ -2,8 +2,7 @@
 
 ## Introduction
 
-Here is my pytorch implementation of the model described in the paper **You Only Look Once:
-Unified, Real-Time Object Detection** [paper](https://arxiv.org/abs/1506.02640). 
+Here is my pytorch implementation of the model described in the paper **YOLO9000: Better, Faster, Stronger** [paper](https://arxiv.org/abs/1612.08242). 
 <p align="center">
   <img src="demo/video.gif"><br/>
   <i>An example of my model's output.</i>
